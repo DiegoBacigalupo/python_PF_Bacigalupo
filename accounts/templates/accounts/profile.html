@@ -1,0 +1,22 @@
+
+
+{% block content %}
+  <h2>Perfil de Usuario</h2>
+
+  <form method="POST">
+    {% csrf_token %}
+    {{ profile_form.as_p }}
+    <button type="submit" class="btn btn-primary">Actualizar perfil</button>
+  </form>
+
+  <hr>
+
+  <h3>Datos de Usuario</h3>
+  <p><strong>Nombre:</strong> {{ user.username }}</p>
+  <p><strong>Email:</strong> {{ user.email }}</p>
+
+  {% if profile.avatar %}
+    <p><strong>Foto de perfil:</strong> <img src="{{ profile.avatar.url }}" alt="Foto de perfil" width="100"></p>
+  {% endif %}
+  
+{% endblock %}

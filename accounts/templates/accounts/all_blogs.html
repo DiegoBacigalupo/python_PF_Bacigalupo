@@ -1,0 +1,18 @@
+
+{% block content %}
+    <h2>Todos los Blogs</h2>
+    <ul>
+        {% for blog in blogs %}
+            <li>
+                <h3>{{ blog.title }}</h3>
+                <p>{{ blog.content|truncatewords:30 }}</p>
+                <p><strong>Autor:</strong> {{ blog.author }}</p>
+                <p><strong>Fecha:</strong> {{ blog.created_at }}</p>
+                <a href="{% url 'blog_detail' blog.id %}">Leer más</a>
+            </li>
+            <hr>
+        {% empty %}
+            <p>No hay blogs disponibles.</p>
+        {% endfor %}
+    </ul>
+{% endblock %}

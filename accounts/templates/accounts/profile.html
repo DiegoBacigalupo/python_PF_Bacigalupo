@@ -1,5 +1,6 @@
 
 
+
 {% block content %}
   <h2>Perfil de Usuario</h2>
 
@@ -18,5 +19,10 @@
   {% if profile.avatar %}
     <p><strong>Foto de perfil:</strong> <img src="{{ profile.avatar.url }}" alt="Foto de perfil" width="100"></p>
   {% endif %}
-  
+
+  <hr>
+
+  <!-- Botón para volver a la página de inicio -->
+  <a href="{% url 'welcome' %}" class="btn btn-secondary">Volver al inicio</a>
+
 {% endblock %}

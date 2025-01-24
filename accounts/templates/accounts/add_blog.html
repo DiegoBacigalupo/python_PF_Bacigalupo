@@ -1,0 +1,13 @@
+
+
+
+{% block content %}
+    <h2>Añadir un nuevo blog</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Guardar Blog</button>
+    </form>
+    <br>
+    <a href="{% url 'welcome' %}">Volver a inicio</a>
+{% endblock %}

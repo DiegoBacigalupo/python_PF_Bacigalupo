@@ -1,0 +1,14 @@
+
+{% block content %}
+    <h2>¡Bienvenido, {{ user.username }}!</h2>
+    <p>Esta es tu página de inicio personalizada después de iniciar sesión.</p>
+    <p><a href="{% url 'profile' %}">Ir a tu perfil</a></p>
+
+    <!-- Formulario para cerrar sesión -->
+    <form id="logout-form" method="post" action="{% url 'logout' %}" style="display: inline;">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Cerrar sesión</button>
+    </form>
+    <a href="{% url 'all_blogs' %}" class="btn btn-primary">Ver todos los blogs</a>
+
+{% endblock %}

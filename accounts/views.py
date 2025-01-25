@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
 from .forms import UserRegisterForm, ProfileForm
 from django.contrib.auth.decorators import login_required
@@ -23,6 +23,8 @@ def register(request):
 @login_required
 def profile(request):
     profile = Profile.objects.get(user=request.user)
+    user_blogs = Blog.objects.filter(author=request.user)  # Obtener los blogs del usuario
+
     if request.method == 'POST':
         profile_form = ProfileForm(request.POST, instance=profile)
         if profile_form.is_valid():
@@ -30,7 +32,10 @@ def profile(request):
     else:
         profile_form = ProfileForm(instance=profile)
 
-    return render(request, 'accounts/profile.html', {'profile_form': profile_form})
+    return render(request, 'accounts/profile.html', {
+        'profile_form': profile_form,
+        'user_blogs': user_blogs
+    })
 
 @login_required
 def welcome(request):
@@ -42,9 +47,9 @@ def add_blog(request):
         form = BlogForm(request.POST)
         if form.is_valid():
             blog = form.save(commit=False)
-            blog.author = request.user  # Asignar el usuario autenticado como autor
+            blog.author = request.user  # Asociar el blog al usuario autenticado
             blog.save()
-            return redirect('blog_list')  # Redirigir a la lista de blogs (crearemos esta vista después)
+            return redirect('all_blogs')  # Redirige a la página de todos los blogs
     else:
         form = BlogForm()
     return render(request, 'accounts/add_blog.html', {'form': form})
@@ -53,3 +58,7 @@ def add_blog(request):
 def all_blogs(request):
     blogs = Blog.objects.all().order_by('-created_at')  # Ordenar por fecha de creación
     return render(request, 'accounts/all_blogs.html', {'blogs': blogs})
+
+def blog_detail(request, blog_id):
+    blog = get_object_or_404(Blog, id=blog_id)
+    return render(request, 'accounts/blog_detail.html', {'blog': blog})

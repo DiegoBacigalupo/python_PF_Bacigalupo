@@ -1,0 +1,7 @@
+{% block content %}
+    <h2>{{ blog.title }}</h2>
+    <p><strong>Autor:</strong> {{ blog.author.username }}</p>
+    <p><strong>Fecha:</strong> {{ blog.created_at }}</p>
+    <p>{{ blog.content }}</p>
+    <a href="{% url 'all_blogs' %}" class="btn btn-secondary">Volver a todos los blogs</a>
+{% endblock %}

@@ -44,14 +44,15 @@ def welcome(request):
 @login_required
 def add_blog(request):
     if request.method == 'POST':
-        form = BlogForm(request.POST)
+        form = BlogForm(request.POST, request.FILES)
         if form.is_valid():
             blog = form.save(commit=False)
-            blog.author = request.user  # Asociar el blog al usuario autenticado
+            blog.author = request.user
             blog.save()
-            return redirect('all_blogs')  # Redirige a la página de todos los blogs
+            return redirect('all_blogs')
     else:
         form = BlogForm()
+
     return render(request, 'accounts/add_blog.html', {'form': form})
 
 
@@ -62,3 +63,6 @@ def all_blogs(request):
 def blog_detail(request, blog_id):
     blog = get_object_or_404(Blog, id=blog_id)
     return render(request, 'accounts/blog_detail.html', {'blog': blog})
+
+def about(request):
+    return render(request, 'accounts/about.html')

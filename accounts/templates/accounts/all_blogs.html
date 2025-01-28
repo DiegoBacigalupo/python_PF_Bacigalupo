@@ -1,4 +1,3 @@
-
 {% block content %}
     <h2>Todos los Blogs</h2>
 
@@ -8,6 +7,9 @@
         {% for blog in blogs %}
             <li>
                 <h3>{{ blog.title }}</h3>
+                {% if blog.image %}
+                    <img src="{{ blog.image.url }}" alt="Imagen de {{ blog.title }}" style="max-width: 300px; height: auto;">
+                {% endif %}
                 <p>{{ blog.content|truncatewords:30 }}</p>
                 <p><strong>Autor:</strong> {{ blog.author.username }}</p>
                 <p><strong>Fecha:</strong> {{ blog.created_at }}</p>

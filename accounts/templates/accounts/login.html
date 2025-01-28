@@ -1,7 +1,13 @@
 <h2>Login</h2>
 <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+    
+    <label for="id_username">Usuario:</label>
+    {{ form.username }}
+
+    <label for="id_password">Contraseña:</label>
+    {{ form.password }}
+
     <button type="submit">Login</button>
 </form>
 

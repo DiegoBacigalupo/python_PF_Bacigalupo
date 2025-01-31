@@ -14,4 +14,5 @@ urlpatterns = [
 
     # URLs de la aplicación blog
     path('blog/', include('blog.urls')),  # Se cambia '' por 'blog/' para evitar conflictos
+    
 ]

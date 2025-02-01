@@ -13,7 +13,8 @@
     <a href="{% url 'all_blogs' %}" class="btn btn-primary">Ver todos los blogs</a>
     <a href="{% url 'add_blog' %}" class="btn btn-primary">Crear Blog</a>
     <a href="{% url 'about' %}" class="btn btn-info">Acerca de nosotros</a>
-    
-        <button>Ver todos los mensajes</button>
-    </a>
+   
+    <a href="{% url 'public_messages' %}" class="btn btn-secondary">Ver Mensajes Públicos</a>
+    <a href="{% url 'private_messages' %}" class="btn btn-secondary">Ver Mensajes Privados</a>
+        
 {% endblock %}

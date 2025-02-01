@@ -22,4 +22,10 @@
             <p>No hay blogs disponibles.</p>
         {% endfor %}
     </ul>
+
+    {% if blog.image %}
+    <img src="{{ blog.image.url }}" alt="Imagen de {{ blog.title }}" width="300">
+{% else %}
+    <p>No hay imagen disponible</p>
+{% endif %}
 {% endblock %}

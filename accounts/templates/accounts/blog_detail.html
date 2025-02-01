@@ -5,4 +5,10 @@
     <p><strong>Fecha:</strong> {{ blog.created_at }}</p>
     <p>{{ blog.content }}</p>
     <a href="{% url 'all_blogs' %}" class="btn btn-secondary">Volver a todos los blogs</a>
+    {% if blog.image %}
+    <img src="{{ blog.image.url }}" alt="Imagen de {{ blog.title }}" width="300">
+{% else %}
+    <p>No hay imagen disponible</p>
+{% endif %}
 {% endblock %}
+

@@ -1,12 +1,27 @@
 {% extends 'accounts/base_generic.html' %}
 
 {% block content %}
-    <h2>Mensajes Públicos</h2>
-    <a href="{% url 'send_message' %}" class="btn btn-primary">Enviar mensaje</a>
+
+<h2>Mensajes Públicos</h2>
+
+{% if messages %}
     <ul>
         {% for message in messages %}
-            <li><strong>{{ message.sender.username }}:</strong> {{ message.content }} ({{ message.timestamp }})</li>
+            <li><strong>{{ message.sender }}</strong>: {{ message.content }}</li>
         {% endfor %}
     </ul>
+{% else %}
+    <p>No hay mensajes públicos aún.</p>
+{% endif %}
+
+    <h2>Mensajes Públicos</h2>
+    
+    <a href="{% url 'send_message' %}" class="btn btn-primary">Enviar mensaje</a>
+
+
+
     <a href="{% url 'welcome' %}" class="btn btn-secondary">Volver al inicio</a>
+
 {% endblock %}
+
+

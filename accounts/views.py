@@ -41,6 +41,7 @@ def profile(request):
         profile_form = ProfileForm(instance=profile)
 
     return render(request, 'accounts/profile.html', {
+        'profile': profile,  # <-- Aquí pasamos el perfil al contexto
         'profile_form': profile_form,
         'user_blogs': user_blogs
     })

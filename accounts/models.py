@@ -8,7 +8,7 @@ from django.db.models.signals import post_save
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='profile_pics/', default='profile_pics/default.jpg')
+    image = models.ImageField(upload_to='profile_pics', default='profile_pics/default.jpg', null=True, blank=True)
     description = models.TextField(blank=True)  # Agregamos la descripción
     website = models.URLField(blank=True, null=True)  # Agregamos el link a la web
 

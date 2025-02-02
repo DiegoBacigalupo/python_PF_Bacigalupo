@@ -1,11 +1,32 @@
 {% extends 'accounts/base_generic.html' %}
+
 {% block content %}
     <h2>Mensajes Privados</h2>
+    
     <a href="{% url 'send_message' %}" class="btn btn-primary">Enviar mensaje</a>
-    <ul>
-        {% for message in messages %}
-            <li><strong>{{ message.sender.username }}:</strong> {{ message.content }} ({{ message.timestamp }})</li>
-        {% endfor %}
-    </ul>
+
+    <h3>📩 Mensajes Recibidos</h3>
+    {% if messages_received %}
+        <ul>
+            {% for message in messages_received %}
+                <li><strong>{{ message.sender.username }}:</strong> {{ message.content }} ({{ message.timestamp }})</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No tienes mensajes recibidos.</p>
+    {% endif %}
+
+    <h3>📤 Mensajes Enviados</h3>
+    {% if messages_sent %}
+        <ul>
+            {% for message in messages_sent %}
+                <li><strong>Para {{ message.receiver.username }}:</strong> {{ message.content }} ({{ message.timestamp }})</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No has enviado mensajes aún.</p>
+    {% endif %}
+
     <a href="{% url 'welcome' %}" class="btn btn-secondary">Volver al inicio</a>
+
 {% endblock %}

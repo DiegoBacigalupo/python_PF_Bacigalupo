@@ -4,6 +4,7 @@
     <h2>Añadir un nuevo blog</h2>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
+        {{ form.media }}
         {{ form.as_p }}
         <button type="submit" class="btn btn-primary">Guardar Blog</button>
     </form>

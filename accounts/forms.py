@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from .models import Profile
 from .models import Blog
+from ckeditor.widgets import CKEditorWidget  # Importar el widget de CKEditor
 
 class UserRegisterForm(forms.ModelForm):
     email = forms.EmailField(required=True)  # Hacer obligatorio el email
@@ -27,12 +28,14 @@ class UserForm(forms.ModelForm):
             'password': forms.PasswordInput(),  # Para ocultar la contraseña
         }
 
+
 class BlogForm(forms.ModelForm):
+    content = forms.CharField(widget=CKEditorWidget())  # Aplicar CKEditor
+
     class Meta:
         model = Blog
         fields = ['title', 'subtitle', 'content', 'image']
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'subtitle': forms.TextInput(attrs={'class': 'form-control'}),
-            'content': forms.Textarea(attrs={'class': 'form-control'}),
         }

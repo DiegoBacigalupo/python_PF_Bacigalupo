@@ -25,7 +25,8 @@ Tecnología Utilizada
 Front-End
 HTML 
 CSS 
-Bootstrap 5.2
+Bootstrap
+
 Back-End
 Python 
 Django 

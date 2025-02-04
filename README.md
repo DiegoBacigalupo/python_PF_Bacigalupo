@@ -1,4 +1,4 @@
-Hoy agregare el video.
+link a video: https://www.youtube.com/watch?v=qmfQru3K-Co
 
 Proyecto Final Coder House - Python
 Comisión: 71885
